@@ -66,6 +66,7 @@ const siteContent = {
     { category: "montage",         featured: true, title: "قصة نجاح | براند حواج",         desc: "مونتاج تقرير يوثق قصة نجاح براند حواج، بأسلوب بصري يبرز رحلة العلامة التجارية، وإنجازاتها، وتأثيرها في السوق.",      gradient: "linear-gradient(135deg,#D91B5C,#0E0E10)", videoLink: "https://www.youtube.com/watch?v=iq0DZSrf1vo" },
 
     { category: "real-estate",     featured: true, title: "جولة عقارية كاملة",    desc: "تغطية شاملة لوحدة سكنية من الداخل والخارج.", gradient: "linear-gradient(135deg,#7A1F4F,#0E0E10)", videoLink: "https://youtu.be/vWaPPHRjxgg" },
+         { category: "real-estate",     featured: true, title: "جولة عقارية كاملة",    desc: "تغطية شاملة لمحطة وقود.", gradient: "linear-gradient(135deg,#7A1F4F,#0E0E10)", videoLink: "https://youtube.com/shorts/OXGulA9DVA4?feature=share" },
     { category: "real-estate",     featured: true, title: "إعلان للإيجار | تصوير ومونتاج",    desc: "تصوير ومونتاج إعلان احترافي يبرز مميزات المستودعات وجاهزيتها للإيجار.", gradient: "linear-gradient(135deg,#7A1F4F,#0E0E10)", videoLink: "https://youtu.be/xrvaOONTjOg" },
 
     { category: "logo-animation",  featured: true, title: "تحريك شعار | أستديو مسهور (الإصدار الأول)",          desc: "تنفيذ موشن جرافيك لشعار أستديو مسهور بأسلوب احترافي يعكس هوية البرنامج ويمنحه حضورًا بصريًا مميزًا.",        gradient: "linear-gradient(135deg,#7A1750,#0E0E10)", videoLink: "https://youtu.be/l5TJtVsIVoI" },
