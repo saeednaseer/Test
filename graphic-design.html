@@ -122,7 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
     projectsEl.innerHTML = gd.projects.map((p, i) => `
       <section class="gd-project ${i % 2 ? 'gd-project--alt' : ''}">
         <div class="gd-project__gallery">
-          ${p.gallery.map(g => `<div class="gd-project__frame" style="background:${g}"></div>`).join('')}
+          ${p.gallery.map(g => {
+            const isGradient = g.trim().startsWith('linear-gradient');
+            const style = isGradient
+              ? `background:${g}`
+              : `background-image:url('${g}'); background-size:cover; background-position:center;`;
+            return `<div class="gd-project__frame" style="${style}"></div>`;
+          }).join('')}
         </div>
         <div class="container gd-project__body">
           <span class="gd-project__tags">${p.tags}</span>

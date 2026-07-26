@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (u.hostname.includes('youtu.be')) return u.pathname.slice(1) || null;
       if (u.hostname.includes('youtube.com')) {
         if (u.pathname.startsWith('/embed/')) return u.pathname.split('/').pop();
+        if (u.pathname.startsWith('/shorts/')) return u.pathname.split('/')[2] || null;
         return u.searchParams.get('v') || null;
       }
     } catch (e) { /* رابط غير صالح */ }
@@ -208,7 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- نافذة تشغيل الفيديو داخل الموقع ---------- */
   function toYouTubeEmbed(url) {
     const id = getYouTubeId(url);
-    return id ? `https://www.youtube.com/embed/${id}?autoplay=1&rel=0` : url;
+    if (id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+    // دعم روابط قوائم التشغيل (Playlist) التي لا تحتوي فيديو محدد (v=) — بدونها يفشل التضمين المباشر
+    try {
+      const u = new URL(url, window.location.href);
+      const list = u.searchParams.get('list');
+      if (list) return `https://www.youtube.com/embed/videoseries?list=${list}&autoplay=1`;
+    } catch (e) { /* رابط غير صالح */ }
+    return url;
   }
 
   const videoModal = document.getElementById('videoModal');
@@ -219,6 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function openVideoModal(link) {
     if (!link || !videoModal || !videoModalIframe) return;
     videoModalIframe.src = toYouTubeEmbed(link);
+    // فيديوهات الشورتس طولية بطبيعتها — نبدّل شكل النافذة لتناسبها بدل تربيعها في إطار عريض
+    const isVertical = /\/shorts\//.test(link);
+    videoModal.classList.toggle('video-modal--vertical', isVertical);
     videoModal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
