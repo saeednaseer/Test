@@ -152,10 +152,9 @@ const siteContent = {
         tags: "هوية بصرية، تصميم مطبوعات",
         desc: "وصف مختصر يشرح فكرة المشروع والحل البصري الذي قدّمته. عدّل هذا النص والصور من content.js.",
         gallery: [
-          "linear-gradient(135deg,#9F1F63,#1a0d14)",
-          "linear-gradient(135deg,#D91B5C,#1a0d14)",
-          "linear-gradient(135deg,#F7941E,#1a0d14)",
-          "linear-gradient(135deg,#7A1750,#1a0d14)"
+        "url('images/Posts/1.png') center center / cover no-repeat",
+  "url('images/Posts/2.png') center center / cover no-repeat",
+  "url('images/Posts/3.png') center center / cover no-repeat"
         ]
       },
       {
