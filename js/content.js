@@ -20,7 +20,7 @@ const siteContent = {
   stats: [
     { num: "+600", label: "مشروع منجز" },
     { num: "+10",  label: "سنوات خبرة" },
-    { num: "8",    label: "أسواق" },
+    { num: "4",    label: "أسواق" },
     { num: "+150", label: "ساعة تصوير جوي" }
   ],
 
