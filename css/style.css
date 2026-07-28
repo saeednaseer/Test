@@ -147,6 +147,19 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
   border-radius: 999px;
   font-weight:600;
 }
+/* زر تبديل اللغة — يُضاف تلقائيًا آخر القائمة عبر main.js */
+.lang-switch{
+  font-family: var(--font-mono);
+  font-size:.82rem; font-weight:700;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor:pointer;
+  transition: color .2s, border-color .2s;
+}
+.lang-switch:hover{ color: var(--accent); border-color: var(--accent); }
 .nav-toggle{
   display:none;
   flex-direction:column; gap:5px;
@@ -170,6 +183,7 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
   .nav.is-open{ max-height:420px; }
   .nav a{ padding:16px 24px; border-top:1px solid var(--border); }
   .nav__cta{ border-radius:0; text-align:center; }
+  .lang-switch{ margin:14px 24px; border-radius:8px; }
 }
 
 /* =========================================================
@@ -449,8 +463,8 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
 /* حد أقصى للعرض والارتفاع معًا (وليس فقط "احتواء" داخل الصندوق) — يمنع الشعار العريض جدًا
    من الظهور أكبر بصريًا من الشعار الطولي، فيبقى وزن كل الشعارات متقاربًا مهما اختلفت نسبها */
 .client-chip img{
-  max-width: 90%;
-  max-height: 85%;
+  max-width: 75%;
+  max-height: 58%;
   width:auto; height:auto;
   object-fit: contain;
 }
@@ -630,7 +644,8 @@ a:focus-visible, button:focus-visible{
 .gd-project{ padding-block: 30px 70px; }
 .gd-project--alt{ background: rgba(255,255,255,.02); }
 .gd-project__gallery{
-  display:flex; gap:16px;
+  display:flex; gap:16px; align-items:stretch;
+  height: 420px;
   overflow-x:auto;
   padding-inline: 24px;
   padding-bottom: 6px;
@@ -639,13 +654,27 @@ a:focus-visible, button:focus-visible{
 }
 .gd-project__gallery::-webkit-scrollbar{ height:6px; }
 .gd-project__gallery::-webkit-scrollbar-thumb{ background: var(--border); border-radius:99px; }
+/* كل صورة تحافظ على نسبة أبعادها الطبيعية (طولي، مربّع/بوست، أو عريض للوحات الشوارع)
+   بدل تربيعها كلها في صندوق واحد بنسبة ثابتة — الارتفاع فقط ثابت، والعرض يتحدد تلقائيًا */
 .gd-project__frame{
   flex: 0 0 auto;
-  width: min(76vw, 480px);
-  aspect-ratio: 4/3;
+  height:100%;
   border-radius: var(--radius-lg);
   scroll-snap-align:start;
   border: 1px solid rgba(255,255,255,.08);
+  display:block;
+}
+img.gd-project__frame{
+  width:auto;
+  object-fit: cover;
+}
+/* التدرّج اللوني (Placeholder) لا يملك أبعاد طبيعية، فيُعطى عرضًا افتراضيًا معقولًا */
+div.gd-project__frame{
+  width: min(76vw, 480px);
+  background-size:cover; background-position:center;
+}
+@media (max-width: 640px){
+  .gd-project__gallery{ height: 300px; }
 }
 .gd-project__body{ padding-top: 26px; max-width: 720px; }
 .gd-project__tags{
@@ -685,8 +714,4 @@ a:focus-visible, button:focus-visible{
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight:800;
   color: var(--text-muted);
-}
-
-@media (max-width: 760px){
-  .gd-project__frame{ width: 82vw; }
 }

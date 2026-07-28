@@ -2,6 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<script>
+// يضبط اتجاه ولغة الصفحة فورًا حسب اختيار الزائر المحفوظ، قبل رسم أي شيء — لتفادي "ومضة" اتجاه خاطئ
+(function(){
+  var lang = localStorage.getItem('siteLang') || 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-content="pageTitle">سعيد ناصر | الأعمال</title>
 <meta name="description" data-content-attr="pageDescription:content" content="معرض أعمال مصنّف حسب القسم: تصوير درون، مونتاج، إنتاج عقاري، تصميم جرافيك، تحريك شعارات، وبرامج تلفزيونية.">
@@ -33,15 +41,15 @@
     </a>
 
     <nav class="nav" id="nav">
-      <a href="index.html">الرئيسية</a>
-      <a href="index.html#about">نبذة</a>
-      <a href="index.html#services">الخدمات</a>
-      <a href="works.html" class="is-active">الأعمال</a>
-      <a href="index.html#clients">العملاء</a>
-      <a href="index.html#contact" class="nav__cta">تواصل معي</a>
+      <a href="index.html" data-i18n="navHome">الرئيسية</a>
+      <a href="index.html#about" data-i18n="navAbout">نبذة</a>
+      <a href="index.html#services" data-i18n="navServices">الخدمات</a>
+      <a href="works.html" class="is-active" data-i18n="navWork">الأعمال</a>
+      <a href="index.html#clients" data-i18n="navClients">العملاء</a>
+      <a href="index.html#contact" class="nav__cta" data-i18n="navContact">تواصل معي</a>
     </nav>
 
-    <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false" data-i18n-attr="navMenuAria:aria-label">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -53,10 +61,10 @@
 <section class="section works-page">
   <div class="container">
 
-    <a href="index.html" class="back-link">→ الرئيسية</a>
+    <a href="index.html" class="back-link" data-i18n="backHome">→ الرئيسية</a>
 
     <div class="section__head">
-      <span class="eyebrow">معرض الأعمال</span>
+      <span class="eyebrow" data-i18n="worksEyebrow">معرض الأعمال</span>
       <h2 id="categoryTitle">كل الأعمال</h2>
       <p class="section__desc" id="categoryDesc">كل المشاريع المعروضة في المعرض، من كل الأقسام.</p>
     </div>
@@ -74,14 +82,14 @@
 </section>
 
 <!-- نافذة تشغيل الفيديو (Lightbox) — يظهر فيها الفيديو داخل الموقع مباشرة -->
-<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="مشغّل الفيديو">
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="مشغّل الفيديو" data-i18n-attr="videoPlayerAria:aria-label">
   <div class="video-modal__backdrop" id="videoModalBackdrop"></div>
   <div class="video-modal__box">
-    <button class="video-modal__close" id="videoModalClose" aria-label="إغلاق">
+    <button class="video-modal__close" id="videoModalClose" aria-label="إغلاق" data-i18n-attr="videoCloseAria:aria-label">
       <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.3 19.7 2.89 18.3 9.17 12 2.89 5.71 4.3 4.29l6.29 6.3 6.29-6.3z"/></svg>
     </button>
     <div class="video-modal__frame">
-      <iframe id="videoModalIframe" src="" title="مشغّل الفيديو" frameborder="0"
+      <iframe id="videoModalIframe" src="" title="مشغّل الفيديو" frameborder="0" data-i18n-attr="videoPlayerAria:title"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
@@ -101,18 +109,18 @@
     </div>
 
     <div class="footer__col">
-      <h4>الصفحات</h4>
+      <h4 data-i18n="footerPages">الصفحات</h4>
       <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="index.html#about">نبذة</a></li>
-        <li><a href="works.html">معرض الأعمال</a></li>
-        <li><a href="index.html#services">الخدمات</a></li>
-        <li><a href="index.html#contact">تواصل</a></li>
+        <li><a href="index.html" data-i18n="navHome">الرئيسية</a></li>
+        <li><a href="index.html#about" data-i18n="navAbout">نبذة</a></li>
+        <li><a href="works.html" data-i18n="footerPortfolio">معرض الأعمال</a></li>
+        <li><a href="index.html#services" data-i18n="navServices">الخدمات</a></li>
+        <li><a href="index.html#contact" data-i18n="navContact">تواصل</a></li>
       </ul>
     </div>
 
     <div class="footer__col">
-      <h4>تواصل معي</h4>
+      <h4 data-i18n="footerContact">تواصل معي</h4>
       <ul>
         <li><a data-content="phoneDisplay" data-content-attr="whatsappLink:href" href="#">+20 000 000 0000</a></li>
         <li><a data-content="email" data-content-attr="emailLink:href" href="#">example@email.com</a></li>

@@ -2,9 +2,17 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<script>
+// يضبط اتجاه ولغة الصفحة فورًا حسب اختيار الزائر المحفوظ، قبل رسم أي شيء — لتفادي "ومضة" اتجاه خاطئ
+(function(){
+  var lang = localStorage.getItem('siteLang') || 'ar';
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'en' ? 'ltr' : 'rtl';
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>سعيد ناصر | تصميم جرافيك</title>
-<meta name="description" content="أعمال تصميم جرافيك: هويات بصرية، مطبوعات، وحملات إعلانية.">
+<meta name="description" id="gdMetaDesc" content="أعمال تصميم جرافيك: هويات بصرية، مطبوعات، وحملات إعلانية.">
 
 <link rel="icon" type="image/png" href="images/logo.png">
 
@@ -22,17 +30,17 @@
 <header class="header" id="header">
   <div class="container header__inner">
     <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="سعيد ناصر" class="logo-img">
+      <img src="images/logo.png" alt="سعيد ناصر" class="logo-img" data-content-attr="fullName:alt">
     </a>
     <nav class="nav" id="nav">
-      <a href="index.html">الرئيسية</a>
-      <a href="index.html#about">نبذة</a>
-      <a href="index.html#services">الخدمات</a>
-      <a href="works.html">الأعمال</a>
-      <a href="index.html#clients">العملاء</a>
-      <a href="index.html#contact" class="nav__cta">تواصل معي</a>
+      <a href="index.html" data-i18n="navHome">الرئيسية</a>
+      <a href="index.html#about" data-i18n="navAbout">نبذة</a>
+      <a href="index.html#services" data-i18n="navServices">الخدمات</a>
+      <a href="works.html" data-i18n="navWork">الأعمال</a>
+      <a href="index.html#clients" data-i18n="navClients">العملاء</a>
+      <a href="index.html#contact" class="nav__cta" data-i18n="navContact">تواصل معي</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false">
+    <button class="nav-toggle" id="navToggle" aria-label="القائمة" aria-expanded="false" data-i18n-attr="navMenuAria:aria-label">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -43,7 +51,7 @@
   <!-- ===================== بيان تحريري كبير ===================== -->
   <section class="gd-hero">
     <div class="container">
-      <a href="index.html" class="back-link">→ الرئيسية</a>
+      <a href="index.html" class="back-link" data-i18n="backHome">→ الرئيسية</a>
       <span class="eyebrow" id="gdEyebrow">استوديو التصميم</span>
       <h1 class="gd-statement" id="gdStatement">أصمم؛ إذن أنا موجود</h1>
       <p class="gd-substatement" id="gdSubStatement">تصميم جرافيك</p>
@@ -58,8 +66,8 @@
   <section class="section section--alt gd-artifacts-section">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow">شذرات</span>
-        <h2>لقطات سريعة</h2>
+        <span class="eyebrow" data-i18n="gdFragments">شذرات</span>
+        <h2 data-i18n="gdQuickShots">لقطات سريعة</h2>
       </div>
       <div class="gd-artifacts" id="gdArtifacts"></div>
     </div>
@@ -77,20 +85,20 @@
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__about">
-      <img src="images/logo.png" alt="سعيد ناصر" class="logo-img">
+      <img src="images/logo.png" alt="سعيد ناصر" class="logo-img" data-content-attr="fullName:alt">
       <p data-content="footerTagline">وصف قصير عنك يظهر في الفوتر.</p>
       <div class="socials" id="socialsRow"></div>
     </div>
     <div class="footer__col">
-      <h4>الصفحات</h4>
+      <h4 data-i18n="footerPages">الصفحات</h4>
       <ul>
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="works.html">معرض الأعمال</a></li>
-        <li><a href="index.html#contact">تواصل</a></li>
+        <li><a href="index.html" data-i18n="navHome">الرئيسية</a></li>
+        <li><a href="works.html" data-i18n="footerPortfolio">معرض الأعمال</a></li>
+        <li><a href="index.html#contact" data-i18n="navContact">تواصل</a></li>
       </ul>
     </div>
     <div class="footer__col">
-      <h4>تواصل معي</h4>
+      <h4 data-i18n="footerContact">تواصل معي</h4>
       <ul>
         <li><a data-content="phoneDisplay" data-content-attr="whatsappLink:href" href="#">+20 000 000 0000</a></li>
         <li><a data-content="email" data-content-attr="emailLink:href" href="#">example@email.com</a></li>
@@ -110,12 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const gd = siteContent.graphicDesignPage;
   if (!gd) return;
 
-  document.getElementById('gdEyebrow').textContent = gd.eyebrow;
-  document.getElementById('gdStatement').textContent = gd.statement;
-  document.getElementById('gdSubStatement').textContent = gd.subStatement;
-  document.getElementById('gdIntro').textContent = gd.intro;
-  document.getElementById('gdClosing').textContent = gd.closing;
-  document.title = `سعيد ناصر | ${gd.subStatement}`;
+  document.getElementById('gdEyebrow').textContent = t(gd.eyebrow);
+  document.getElementById('gdStatement').textContent = t(gd.statement);
+  document.getElementById('gdSubStatement').textContent = t(gd.subStatement);
+  document.getElementById('gdIntro').textContent = t(gd.intro);
+  document.getElementById('gdClosing').textContent = t(gd.closing);
+  document.title = `${t(siteContent.fullName)} | ${t(gd.subStatement)}`;
+  const gdMetaDesc = document.getElementById('gdMetaDesc');
+  if (gdMetaDesc && gd.metaDescription) gdMetaDesc.setAttribute('content', t(gd.metaDescription));
 
   const projectsEl = document.getElementById('gdProjects');
   if (projectsEl && gd.projects) {
@@ -125,18 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
           ${p.gallery.map(g => {
             const value = g.trim();
             const isGradient = value.startsWith('linear-gradient');
+            if (isGradient) {
+              return `<div class="gd-project__frame" style="background:${value}"></div>`;
+            }
             // يزيل أي url('...') لو المستخدم كتبها بنفسه بالخطأ، لتفادي url() مزدوجة تكسر الصورة
             const cleanPath = value.replace(/^url\((['"]?)(.*)\1\)$/i, '$2');
-            const style = isGradient
-              ? `background:${value}`
-              : `background-image:url('${cleanPath}'); background-size:cover; background-position:center;`;
-            return `<div class="gd-project__frame" style="${style}"></div>`;
+            return `<img class="gd-project__frame" src="${cleanPath}" alt="${t(p.title)}">`;
           }).join('')}
         </div>
         <div class="container gd-project__body">
-          <span class="gd-project__tags">${p.tags}</span>
-          <h2>${p.title}</h2>
-          <p>${p.desc}</p>
+          <span class="gd-project__tags">${t(p.tags)}</span>
+          <h2>${t(p.title)}</h2>
+          <p>${t(p.desc)}</p>
         </div>
       </section>
     `).join('');
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     artifactsEl.innerHTML = gd.artifacts.map(a => `
       <div class="gd-artifact reveal">
         <span class="gd-artifact__icon">${a.icon}</span>
-        <p>${a.caption}</p>
+        <p>${t(a.caption)}</p>
       </div>
     `).join('');
     // إعادة تشغيل ملاحظ الظهور التدريجي لهذه العناصر المضافة حديثًا

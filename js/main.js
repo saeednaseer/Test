@@ -1,23 +1,104 @@
 /* =========================================================
    منطق الموقع — لا تحتاج تعديل هذا الملف عادةً
    كل التخصيص بيتم من js/content.js
+   Site logic — you normally don't need to edit this file.
+   All customization happens in js/content.js
 ========================================================= */
+
+/* ---------- اللغة الحالية / Current language ---------- */
+// ملاحظة: اتجاه الصفحة (dir) ولغتها (lang) يُضبطان فورًا في <head> كل صفحة
+// (قبل تحميل هذا الملف) لتفادي "ومضة" اتجاه خاطئ عند التحميل
+function getCurrentLang() {
+  return localStorage.getItem('siteLang') || 'ar';
+}
+// دالة الترجمة: تُرجع النص بلغة الموقع الحالية، وتتعامل مع القيم غير المترجمة (روابط، أرقام) كما هي
+function t(field) {
+  if (field == null) return '';
+  if (typeof field === 'string' || typeof field === 'number') return field;
+  const lang = getCurrentLang();
+  return field[lang] ?? field.ar ?? field.en ?? '';
+}
+
+/* ---------- نصوص الواجهة الثابتة (تنقّل، عناوين أقسام، أزرار) — لا تُعدَّل من content.js لأنها جزء من القالب ---------- */
+const uiStrings = {
+  navHome:        { ar: "الرئيسية",              en: "Home" },
+  navAbout:       { ar: "نبذة",                   en: "About" },
+  navServices:    { ar: "الخدمات",                en: "Services" },
+  navWork:        { ar: "الأعمال",                en: "Work" },
+  navClients:     { ar: "العملاء",                en: "Clients" },
+  navContact:     { ar: "تواصل معي",              en: "Contact Me" },
+  navMenuAria:    { ar: "القائمة",                en: "Menu" },
+  viewWork:       { ar: "شاهد أعمالي",            en: "View My Work" },
+  marketsLabel:   { ar: "أسواق اشتغلت فيها",       en: "Markets I've Worked In" },
+  aboutEyebrow:   { ar: "من أنا",                  en: "About Me" },
+  aboutHeading:   { ar: "نبذة عني",                en: "About" },
+  servicesEyebrow:{ ar: "ماذا أقدم؟",              en: "What I Offer" },
+  servicesHeading:{ ar: "الخدمات",                 en: "Services" },
+  workEyebrow:    { ar: "أعمال مميزة",             en: "Featured Work" },
+  workViewAll:    { ar: "شاهد كل الأعمال ←",        en: "View All Work →" },
+  serviceViewWork:{ ar: "شاهد أعمال هذا القسم ←",   en: "View this section's work →" },
+  videoPlayerAria:{ ar: "مشغّل الفيديو",           en: "Video player" },
+  videoCloseAria: { ar: "إغلاق",                   en: "Close" },
+  clientsEyebrow: { ar: "شركاء النجاح",            en: "Trusted By" },
+  clientsHeading: { ar: "تثق بنا كبرى الجهات",      en: "Leading Organizations Trust Us" },
+  contactEyebrow: { ar: "لنبدأ",                   en: "Let's Start" },
+  contactWhatsapp:{ ar: "تواصل عبر واتساب",        en: "Message on WhatsApp" },
+  contactEmail:   { ar: "راسلني عبر الإيميل",       en: "Email Me" },
+  footerPages:    { ar: "الصفحات",                 en: "Pages" },
+  footerContact:  { ar: "تواصل معي",               en: "Contact Me" },
+  footerPortfolio:{ ar: "معرض الأعمال",            en: "Portfolio" },
+  backHome:       { ar: "→ الرئيسية",              en: "← Home" },
+  worksEyebrow:   { ar: "معرض الأعمال",            en: "Portfolio" },
+  gdFragments:    { ar: "شذرات",                   en: "Fragments" },
+  gdQuickShots:   { ar: "لقطات سريعة",             en: "Quick Shots" },
+  allWork:        { ar: "🗂️ كل الأعمال",            en: "🗂️ All Work" },
+  categoryEmpty:  { ar: "لا توجد أعمال مضافة في هذا القسم بعد.", en: "No work has been added to this section yet." },
+  categoryAllTitle: { ar: "كل الأعمال",             en: "All Work" },
+  categoryAllDesc: { ar: "كل المشاريع المعروضة في المعرض، من كل الأقسام.", en: "Every project in the portfolio, across all sections." }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   const c = siteContent;
+  const lang = getCurrentLang();
+
+  /* ---------- تطبيق نصوص الواجهة الثابتة (data-i18n) ---------- */
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (uiStrings[key]) el.textContent = t(uiStrings[key]);
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const [key, attr] = el.getAttribute('data-i18n-attr').split(':');
+    if (uiStrings[key]) el.setAttribute(attr, t(uiStrings[key]));
+  });
+
+  /* ---------- زر تبديل اللغة (يُضاف تلقائيًا داخل القائمة العلوية) ---------- */
+  const nav = document.getElementById('nav');
+  if (nav) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'lang-switch';
+    btn.textContent = lang === 'ar' ? 'EN' : 'عربي';
+    btn.setAttribute('aria-label', 'تبديل اللغة / Switch language');
+    btn.addEventListener('click', () => {
+      localStorage.setItem('siteLang', lang === 'ar' ? 'en' : 'ar');
+      window.location.reload();
+    });
+    nav.appendChild(btn);
+  }
 
   /* ---------- نص عام (data-content) ---------- */
   document.querySelectorAll('[data-content]').forEach(el => {
     const key = el.getAttribute('data-content');
-    if (c[key] !== undefined) el.textContent = c[key];
+    if (c[key] !== undefined) el.textContent = t(c[key]);
   });
 
   /* ---------- خصائص/روابط (data-content-attr="key:attr") ---------- */
   document.querySelectorAll('[data-content-attr]').forEach(el => {
     const [key, attr] = el.getAttribute('data-content-attr').split(':');
-    if (c[key] !== undefined) el.setAttribute(attr, c[key]);
+    if (c[key] !== undefined) el.setAttribute(attr, t(c[key]));
   });
 
-  document.title = c.pageTitle;
+  document.title = t(c.pageTitle);
 
   /* ---------- أنيميشن كتابة العناوين الوظيفية ---------- */
   const roleEl = document.getElementById('roleTyper');
@@ -26,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const typeSpeed = 90, deleteSpeed = 45, holdTime = 1400;
 
     function tick() {
-      const word = c.roles[roleIndex];
+      const word = t(c.roles[roleIndex]);
       if (!deleting) {
         charIndex++;
         roleEl.textContent = word.slice(0, charIndex);
@@ -54,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     statsGrid.innerHTML = c.stats.map(s => `
       <div class="stat">
         <div class="stat__num">${s.num}</div>
-        <div class="stat__label">${s.label}</div>
+        <div class="stat__label">${t(s.label)}</div>
       </div>
     `).join('');
   }
@@ -62,11 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- الأسواق ---------- */
   const marketsRow = document.getElementById('marketsRow');
   if (marketsRow && c.markets) {
-    marketsRow.innerHTML = c.markets.map(m => `<span class="market-chip"><img src="${m.flag}" alt="" class="market-chip__flag">${m.name}</span>`).join('');
+    marketsRow.innerHTML = c.markets.map(m => `<span class="market-chip"><img src="${m.flag}" alt="" class="market-chip__flag">${t(m.name)}</span>`).join('');
   }
 
   /* ---------- الخدمات ---------- */
   const servicesGrid = document.getElementById('servicesGrid');
+  const viewWorkLabel = t(uiStrings.serviceViewWork);
   if (servicesGrid && c.services) {
     servicesGrid.innerHTML = c.services.map(s => {
       // قسم "تصميم جرافيك" له صفحة عرض خاصة بأسلوب مختلف (معرض تحريري) بدل شبكة الأعمال المعتادة
@@ -75,9 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <a href="${href}" class="service-card reveal">
         <div class="service-card__tag">${s.tag}</div>
         <div class="service-card__icon">${s.icon}</div>
-        <h3>${s.title}</h3>
-        <p>${s.desc}</p>
-        <span class="service-card__more">شاهد أعمال هذا القسم ←</span>
+        <h3>${t(s.title)}</h3>
+        <p>${t(s.desc)}</p>
+        <span class="service-card__more">${viewWorkLabel}</span>
       </a>
     `;
     }).join('');
@@ -101,20 +183,22 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- بناء كرت عمل واحد (يُستخدم في الصفحة الرئيسية وصفحة الأعمال المفلترة) ---------- */
   function renderWorkCard(w) {
     const ytId = getYouTubeId(w.videoLink);
+    const title = t(w.title);
     // إن وُجد رابط يوتيوب صالح، تُستخدم الصورة المصغّرة الحقيقية للفيديو بدل التدرّج اللوني
     const thumbStyle = ytId
       ? `background-image:url('https://img.youtube.com/vi/${ytId}/hqdefault.jpg'); background-size:cover; background-position:center;`
       : `background:${w.gradient}`;
+    const playLabel = lang === 'ar' ? `تشغيل فيديو: ${title}` : `Play video: ${title}`;
     return `
-      <button type="button" class="work-card reveal" data-video="${w.videoLink || ''}" aria-label="تشغيل فيديو: ${w.title}">
+      <button type="button" class="work-card reveal" data-video="${w.videoLink || ''}" aria-label="${playLabel}">
         <span class="work-card__thumb" style="${thumbStyle}">
           <span class="work-card__play" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20 4v16l-16-8z"/></svg>
           </span>
         </span>
         <span class="work-card__body">
-          <h3>${w.title}</h3>
-          <p>${w.desc}</p>
+          <h3>${title}</h3>
+          <p>${t(w.desc)}</p>
         </span>
       </button>
     `;
@@ -123,8 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- الأعمال (الصفحة الرئيسية) — مختارات فقط، وليس كل الأعمال ---------- */
   const workGrid = document.getElementById('workGrid');
   if (workGrid && c.work) {
-    // تُعرض هنا العناصر المعلَّمة featured:true فقط (بحد أقصى 8)، حتى لو كانت مصفوفة work كلها تحتوي عشرات الأعمال
-    // بقية الأعمال تظهر كاملة في صفحة القسم الخاصة بها عبر works.html
     const featured = c.work.filter(w => w.featured).slice(0, 8);
     workGrid.innerHTML = (featured.length ? featured : c.work.slice(0, 8)).map(renderWorkCard).join('');
   }
@@ -136,29 +218,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeSlug = params.get('cat');
     const activeService = c.services.find(s => s.slug === activeSlug);
 
-    // شريط تصفية بكل الأقسام أعلى الصفحة، مع تمييز القسم الحالي
     const chipsEl = document.getElementById('categoryChips');
+    const allWorkLabel = t(uiStrings.allWork);
     if (chipsEl) {
       chipsEl.innerHTML = c.services.map(s => {
         const href = s.slug === 'graphic-design' ? 'graphic-design.html' : `works.html?cat=${encodeURIComponent(s.slug)}`;
-        return `<a href="${href}" class="category-chip${s.slug === activeSlug ? ' is-active' : ''}">${s.icon} ${s.title}</a>`;
-      }).join('') + `<a href="works.html" class="category-chip${!activeSlug ? ' is-active' : ''}">🗂️ كل الأعمال</a>`;
+        return `<a href="${href}" class="category-chip${s.slug === activeSlug ? ' is-active' : ''}">${s.icon} ${t(s.title)}</a>`;
+      }).join('') + `<a href="works.html" class="category-chip${!activeSlug ? ' is-active' : ''}">${allWorkLabel}</a>`;
     }
 
     const titleEl = document.getElementById('categoryTitle');
     const descEl = document.getElementById('categoryDesc');
     if (activeService) {
-      if (titleEl) titleEl.textContent = activeService.title;
-      if (descEl) descEl.textContent = activeService.desc;
+      if (titleEl) titleEl.textContent = t(activeService.title);
+      if (descEl) descEl.textContent = t(activeService.desc);
     } else {
-      if (titleEl) titleEl.textContent = 'كل الأعمال';
-      if (descEl) descEl.textContent = 'كل المشاريع المعروضة في المعرض، من كل الأقسام.';
+      if (titleEl) titleEl.textContent = t(uiStrings.categoryAllTitle);
+      if (descEl) descEl.textContent = t(uiStrings.categoryAllDesc);
     }
 
     const filtered = activeSlug ? c.work.filter(w => w.category === activeSlug) : c.work;
+    const emptyLabel = t(uiStrings.categoryEmpty);
     categoryGrid.innerHTML = filtered.length
       ? filtered.map(renderWorkCard).join('')
-      : `<p class="category-empty">لا توجد أعمال مضافة في هذا القسم بعد.</p>`;
+      : `<p class="category-empty">${emptyLabel}</p>`;
   }
 
   /* ---------- العملاء (شبكة ثابتة بدخول متدرّج) ---------- */
@@ -166,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (clientsGrid && c.clients) {
     clientsGrid.innerHTML = c.clients.map((client, i) => `
       <span class="client-chip reveal" style="animation-delay:${i * 0.06}s">
-        <img src="${client.logo}" alt="${client.name}">
+        <img src="${client.logo}" alt="${t(client.name)}">
       </span>
     `).join('');
   }
@@ -194,7 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- قائمة الجوال ---------- */
   const navToggle = document.getElementById('navToggle');
-  const nav = document.getElementById('nav');
   if (navToggle && nav) {
     navToggle.addEventListener('click', () => {
       const isOpen = nav.classList.toggle('is-open');
@@ -210,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function toYouTubeEmbed(url) {
     const id = getYouTubeId(url);
     if (id) return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-    // دعم روابط قوائم التشغيل (Playlist) التي لا تحتوي فيديو محدد (v=) — بدونها يفشل التضمين المباشر
     try {
       const u = new URL(url, window.location.href);
       const list = u.searchParams.get('list');
@@ -227,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function openVideoModal(link) {
     if (!link || !videoModal || !videoModalIframe) return;
     videoModalIframe.src = toYouTubeEmbed(link);
-    // فيديوهات الشورتس طولية بطبيعتها — نبدّل شكل النافذة لتناسبها بدل تربيعها في إطار عريض
     const isVertical = /\/shorts\//.test(link);
     videoModal.classList.toggle('video-modal--vertical', isVertical);
     videoModal.classList.add('is-open');
@@ -236,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeVideoModal() {
     if (!videoModal || !videoModalIframe) return;
     videoModal.classList.remove('is-open');
-    videoModalIframe.src = ''; // إيقاف الفيديو فورًا عند الإغلاق
+    videoModalIframe.src = '';
     document.body.style.overflow = '';
   }
 
@@ -272,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const numEls = statsGrid.querySelectorAll('.stat__num');
     const countUp = (el) => {
       const raw = el.textContent.trim();
-      const match = raw.match(/^(\D*)(\d+)(\D*)$/); // بادئة غير رقمية، رقم، لاحقة غير رقمية
+      const match = raw.match(/^(\D*)(\d+)(\D*)$/);
       if (!match) return;
       const [, prefix, digits, suffix] = match;
       const target = parseInt(digits, 10);
