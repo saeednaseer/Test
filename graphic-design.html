@@ -123,10 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <section class="gd-project ${i % 2 ? 'gd-project--alt' : ''}">
         <div class="gd-project__gallery">
           ${p.gallery.map(g => {
-            const isGradient = g.trim().startsWith('linear-gradient');
+            const value = g.trim();
+            const isGradient = value.startsWith('linear-gradient');
+            // يزيل أي url('...') لو المستخدم كتبها بنفسه بالخطأ، لتفادي url() مزدوجة تكسر الصورة
+            const cleanPath = value.replace(/^url\((['"]?)(.*)\1\)$/i, '$2');
             const style = isGradient
-              ? `background:${g}`
-              : `background-image:url('${g}'); background-size:cover; background-position:center;`;
+              ? `background:${value}`
+              : `background-image:url('${cleanPath}'); background-size:cover; background-position:center;`;
             return `<div class="gd-project__frame" style="${style}"></div>`;
           }).join('')}
         </div>
