@@ -83,7 +83,7 @@ const siteContent = {
   work: [
     { category: "drone",           featured: true, title: { ar: "تصوير عقاري بالدرون", en: "Drone Real Estate Footage" },  desc: { ar: "توثيق جوي لمشروع مستودعات.", en: "Aerial documentation of a warehouse project." },              gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://youtu.be/CDRoJKS6KUc" },
     { category: "drone",           featured: true, title: { ar: "تصوير عقاري بالدرون", en: "Drone Real Estate Footage" },  desc: { ar: "توثيق اعلان لإستراحة للبيع.", en: "Promotional footage for a rest house for sale." },             gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://youtu.be/pBSVYD4oJXM" },
-    { category: "drone",           featured: true, title: { ar: "برنامج خريف حوف | تصوير جوي بالدرون", en: "Kharif Hauf Program | Aerial Drone Footage" }, desc: { ar: "برنامج خريف حوف، يوثق المشاهد الطبيعية الخلابة من منظور جوي يبرز جمال المكان وتفاصيله.", en: "Kharif Hauf program, documenting stunning natural scenery from an aerial view that highlights the place's beauty and detail." }, gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://www.youtube.com/playlist?list=PLV8U2ls1d3am7iptTHoC69i4fZz4PYirH" },
+    { category: "drone",           featured: true, title: { ar: "برنامج خريف حوف | تصوير جوي بالدرون", en: "Kharif Hauf Program | Aerial Drone Footage" }, desc: { ar: "برنامج خريف حوف، يوثق المشاهد الطبيعية الخلابة من منظور جوي يبرز جمال المكان وتفاصيله.", en: "Kharif Hauf program, documenting stunning natural scenery from an aerial view that highlights the place's beauty and detail." }, gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://youtu.be/qftb3qL5U8w?si=3oZxwo-2hqj95pij" },
     { category: "drone",           featured: true, title: { ar: "على خطى المحضار | تصوير جوي بالدرون", en: "In the Footsteps of Al-Mahdhar | Aerial Drone Footage" }, desc: { ar: "عمل يوثق المسيرة الفنية للفنان حسين أبو بكر المحضار، من خلال لقطات جوية استعرضت أبرز المناطق التي تغنى بها وألهمت أعماله.", en: "A piece documenting the artistic journey of Hussein Abu Bakr Al-Mahdhar, through aerial shots of the places that inspired his work." }, gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://www.youtube.com/watch?v=4D01Br4q8ZY&list=PLZz0Fdf56G7RMz39OW8DYBDI7e0ew5cSy&index=8" },
     { category: "drone",           featured: true, title: { ar: "برنامج نجم البدلة | تصوير جوي بالدرون", en: "Najm Al-Badla Program | Aerial Drone Footage" }, desc: { ar: "عمل يوثق سواحل حضرموت بلقطات جوية احترافية، ويستعرض التجارب السياحية والحياة اليومية للسكان.", en: "A piece documenting the coasts of Hadhramaut with professional aerial shots, showcasing tourism and daily life." }, gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://youtu.be/pBSVYD4oJXM" },
     { category: "drone",           featured: true, title: { ar: "إعلان قاعة أفراح | التصوير السينمائي", en: "Wedding Hall Ad | Cinematic Filming" }, desc: { ar: "تنفيذ تصوير احترافي لإعلان ترويجي يبرز هوية القاعة، تفاصيلها، والأجواء المميزة للمناسبات.", en: "Professional filming for a promotional ad highlighting the hall's identity, details, and event atmosphere." }, gradient: "linear-gradient(135deg,#9F1F63,#0E0E10)", videoLink: "https://www.youtube.com/watch?v=jRrol528fCQ" },
@@ -185,10 +185,9 @@ const siteContent = {
         tags: { ar: "هوية بصرية، تصميم مطبوعات", en: "Visual Identity, Print Design" },
         desc: { ar: "وصف مختصر يشرح فكرة المشروع والحل البصري الذي قدّمته. عدّل هذا النص والصور من content.js.", en: "A short description explaining the project's idea and the visual solution delivered. Edit this text and images in content.js." },
         gallery: [
-          "linear-gradient(135deg,#9F1F63,#1a0d14)",
-          "linear-gradient(135deg,#D91B5C,#1a0d14)",
-          "linear-gradient(135deg,#F7941E,#1a0d14)",
-          "linear-gradient(135deg,#7A1750,#1a0d14)"
+            "images/Posts/0.webp",
+  "images/Posts/1.webp",
+  "images/Posts/2.webp"
         ]
       },
       {
