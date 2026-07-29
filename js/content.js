@@ -185,9 +185,19 @@ const siteContent = {
         tags: { ar: "هوية بصرية، تصميم مطبوعات", en: "Visual Identity, Print Design" },
         desc: { ar: "وصف مختصر يشرح فكرة المشروع والحل البصري الذي قدّمته. عدّل هذا النص والصور من content.js.", en: "A short description explaining the project's idea and the visual solution delivered. Edit this text and images in content.js." },
         gallery: [
-            "images/Posts/0.webp",
-  "images/Posts/1.webp",
-  "images/Posts/2.webp"
+                     "images/Posts/0.webp",
+                     "images/Posts/1.webp",
+                     "images/Posts/2.webp",
+                     "images/Posts/3.webp",
+                     "images/Posts/4.webp",
+                     "images/Posts/5.webp",
+                     "images/Posts/6.webp",
+                     "images/Posts/7.webp",
+                     "images/Posts/8.webp",
+                     "images/Posts/9.webp",
+                     "images/Posts/10.webp",
+                     "images/Posts/11.webp"
+                 
         ]
       },
       {
