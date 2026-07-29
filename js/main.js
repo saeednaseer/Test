@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = t(w.title);
     // إن وُجد رابط يوتيوب صالح، تُستخدم الصورة المصغّرة الحقيقية للفيديو بدل التدرّج اللوني
     const thumbStyle = ytId
-      ? `background-image:url('https://img.youtube.com/vi/${ytId}/hqdefault.jpg'); background-size:cover; background-position:center;`
+      ? `background-image:url('https://img.youtube.com/vi/${ytId}/mqdefault.jpg'); background-size:cover; background-position:center;`
       : `background:${w.gradient}`;
     const playLabel = lang === 'ar' ? `تشغيل فيديو: ${title}` : `Play video: ${title}`;
     return `

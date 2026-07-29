@@ -369,7 +369,9 @@ h1,h2,h3{ font-family: var(--font-display); margin:0; }
 /* الأعمال */
 .work-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+  /* max-width على الكرت يمنعه من التمدد المشوّه لو كان آخر صف ناقص — justify-content:center يوسّط الشبكة كلها */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
+  justify-content: center;
   gap: 22px;
 }
 .work-viewall{
