@@ -44,7 +44,7 @@ const siteContent = {
   stats: [
     { num: "+600", label: { ar: "مشروع منجز", en: "Projects Completed" } },
     { num: "+10",  label: { ar: "سنوات خبرة", en: "Years of Experience" } },
-    { num: "8",    label: { ar: "أسواق",       en: "Markets" } },
+    { num: "4",    label: { ar: "أسواق",       en: "Markets" } },
     { num: "+150", label: { ar: "ساعة تصوير جوي", en: "Hours of Aerial Footage" } }
   ],
 
