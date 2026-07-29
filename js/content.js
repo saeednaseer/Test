@@ -191,7 +191,6 @@ const siteContent = {
                      "images/Posts/3.webp",
                      "images/Posts/4.webp",
                      "images/Posts/5.webp",
-                     "images/Posts/6.webp",
                      "images/Posts/7.webp",
                      "images/Posts/8.webp",
                      "images/Posts/9.webp",
