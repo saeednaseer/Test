@@ -207,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- الأعمال (الصفحة الرئيسية) — مختارات فقط، وليس كل الأعمال ---------- */
   const workGrid = document.getElementById('workGrid');
   if (workGrid && c.work) {
-    const featured = c.work.filter(w => w.featured).slice(0, 8);
-    workGrid.innerHTML = (featured.length ? featured : c.work.slice(0, 8)).map(renderWorkCard).join('');
+    const featured = c.work.filter(w => w.featured).slice(0, 10);
+    workGrid.innerHTML = (featured.length ? featured : c.work.slice(0, 10)).map(renderWorkCard).join('');
   }
 
   /* ---------- صفحة الأعمال المفلترة حسب القسم (works.html?cat=slug) ---------- */
