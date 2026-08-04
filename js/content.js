@@ -215,9 +215,14 @@ const siteContent = {
         tags: { ar: "تصميم إعلانات، طباعة", en: "Ad Design, Print" },
         desc: { ar: "تصميم احترافي للوحات الإعلانية والمطبوعات التجارية، يجمع بين الهوية البصرية والرسائل التسويقية لإبراز العلامة التجارية وجذب انتباه العملاء.", en: "Professional advertising and signage design that combines strong visual identity with effective marketing messages to enhance brand presence and capture customer attention." },
         gallery: [
-          "linear-gradient(135deg,#F7941E,#1a0d14)",
-          "linear-gradient(135deg,#9F1F63,#1a0d14)",
-          "linear-gradient(135deg,#D91B5C,#1a0d14)"
+          "images/Posts/0.webp",
+                     "images/Profile/1.webp",
+                     "images/Profile/2.webp",
+                     "images/Profile/3.webp",
+                     "images/Profile/4.webp",
+                     "images/Profile/5.webp",
+                     "images/Profile/7.webp"
+                     
         ]
       }
     ],
