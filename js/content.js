@@ -211,9 +211,9 @@ const siteContent = {
         ]
       },
       {
-        title: { ar: "تصميم إعلانات ولوحات دعائية", en: "Advertising & Signage Design" },
+        title: { ar: "بروفايل شركة احترافي", en: "Advertising & Signage Design" },
         tags: { ar: "تصميم إعلانات، طباعة", en: "Ad Design, Print" },
-        desc: { ar: "تصميم احترافي للوحات الإعلانية والمطبوعات التجارية، يجمع بين الهوية البصرية والرسائل التسويقية لإبراز العلامة التجارية وجذب انتباه العملاء.", en: "Professional advertising and signage design that combines strong visual identity with effective marketing messages to enhance brand presence and capture customer attention." },
+        desc: { ar: "تصميم بروفايل يعكس هوية علامتك التجارية بأسلوب احترافي، يجمع بين المحتوى المنظم والتصميم الجذاب لتقديم خدماتك ومشاريعك بصورة تعزز الثقة وتترك انطباعًا مميزًا.", en: "Professional company profile design that reflects your brand identity through clean layouts and engaging visuals, presenting your services and achievements with clarity and credibility." },
         gallery: [
                      "images/Profile/4.webp",
                      "images/Profile/2.webp",
@@ -227,9 +227,9 @@ const siteContent = {
       },
 
 {
-        title: { ar: "تصاميم السوشيال ميديا", en: "Social Media Design" },
+        title: { ar: "بروفايل عقاري وتسويقيا", en: "Real estate and marketing profile" },
         tags: { ar: "هوية بصرية", en: "Visual Identity" },
-        desc: { ar: "تصميم منشورات وإعلانات احترافية لمنصات التواصل الاجتماعي، تجمع بين الإبداع والهوية البصرية لتقديم محتوى جذاب يعزز حضور العلامة التجارية.", en: "Professional social media posts and ad designs that blend creativity with brand identity to deliver engaging content and strengthen your online presence." },
+        desc: { ar: "تصميم بروفايل مخصص لتسويق العقارات والمشاريع الاستثمارية، يبرز المزايا والبيانات بأسلوب بصري احترافي يساعد على جذب العملاء ودعم قراراتهم.", en: "Custom real estate profile design showcasing properties and investment opportunities with a modern visual style that highlights key information and attracts potential clients." },
         gallery: [
                      "images/Profile2/0.webp",
                      "images/Profile2/1.webp",
