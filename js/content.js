@@ -192,9 +192,9 @@ const siteContent = {
     },
     projects: [
       {
-        title: { ar: "هوية بصرية — مشروع 01", en: "Visual Identity — Project 01" },
-        tags: { ar: "هوية بصرية، تصميم مطبوعات", en: "Visual Identity, Print Design" },
-        desc: { ar: "وصف مختصر يشرح فكرة المشروع والحل البصري الذي قدّمته. عدّل هذا النص والصور من content.js.", en: "A short description explaining the project's idea and the visual solution delivered. Edit this text and images in content.js." },
+        title: { ar: "تصاميم السوشيال ميديا", en: "Social Media Design" },
+        tags: { ar: "هوية بصرية", en: "Visual Identity" },
+        desc: { ar: "تصميم منشورات وإعلانات احترافية لمنصات التواصل الاجتماعي، تجمع بين الإبداع والهوية البصرية لتقديم محتوى جذاب يعزز حضور العلامة التجارية.", en: "Professional social media posts and ad designs that blend creativity with brand identity to deliver engaging content and strengthen your online presence." },
         gallery: [
                      "images/Posts/0.webp",
                      "images/Posts/1.webp",
@@ -211,9 +211,9 @@ const siteContent = {
         ]
       },
       {
-        title: { ar: "حملة مطبوعة — مشروع 02", en: "Print Campaign — Project 02" },
+        title: { ar: "تصميم إعلانات ولوحات دعائية", en: "Advertising & Signage Design" },
         tags: { ar: "تصميم إعلانات، طباعة", en: "Ad Design, Print" },
-        desc: { ar: "وصف مختصر يشرح فكرة المشروع والحل البصري الذي قدّمته. عدّل هذا النص والصور من content.js.", en: "A short description explaining the project's idea and the visual solution delivered. Edit this text and images in content.js." },
+        desc: { ar: "تصميم احترافي للوحات الإعلانية والمطبوعات التجارية، يجمع بين الهوية البصرية والرسائل التسويقية لإبراز العلامة التجارية وجذب انتباه العملاء.", en: "Professional advertising and signage design that combines strong visual identity with effective marketing messages to enhance brand presence and capture customer attention." },
         gallery: [
           "linear-gradient(135deg,#F7941E,#1a0d14)",
           "linear-gradient(135deg,#9F1F63,#1a0d14)",
