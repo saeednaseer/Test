@@ -224,7 +224,24 @@ const siteContent = {
                      "images/Profile/7.webp"
                      
         ]
+      },
+
+{
+        title: { ar: "تصاميم السوشيال ميديا", en: "Social Media Design" },
+        tags: { ar: "هوية بصرية", en: "Visual Identity" },
+        desc: { ar: "تصميم منشورات وإعلانات احترافية لمنصات التواصل الاجتماعي، تجمع بين الإبداع والهوية البصرية لتقديم محتوى جذاب يعزز حضور العلامة التجارية.", en: "Professional social media posts and ad designs that blend creativity with brand identity to deliver engaging content and strengthen your online presence." },
+        gallery: [
+                     "images/Profile2/0.webp",
+                     "images/Posts2/1.webp",
+                     "images/Posts2/2.webp",
+                     "images/Posts2/3.webp",
+                     "images/Posts2/4.webp",
+                     "images/Posts2/5.webp",
+                     "images/Posts2/7.webp",
+                
+        ]
       }
+       
     ],
     artifacts: [
       { icon: "🎨", caption: { ar: "شعار مطبوع بأسلوب تجريبي.", en: "A logo printed in an experimental style." } },
