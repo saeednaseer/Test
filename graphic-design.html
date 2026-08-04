@@ -129,7 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const projectsEl = document.getElementById('gdProjects');
   if (projectsEl && gd.projects) {
-    projectsEl.innerHTML
+    projectsEl.innerHTML = gd.projects.map((p, i) => `
+      <section class="gd-project ${i % 2 ? 'gd-project--alt' : ''}">
+        <div class="gd-project__gallery">
+          ${p.gallery.map(g => {
+            const value = g.trim();
+            const isGradient = value.startsWith('linear-gradient');
+            if (isGradient) {
+              return `<div class="gd-project__frame" style="background:${value}"></div>`;
+            }
+            // يزيل أي url('...') لو المستخدم كتبها بنفسه بالخطأ، لتفادي url() مزدوجة تكسر الصورة
+            const cleanPath = value.replace(/^url\((['"]?)(.*)\1\)$/i, '$2');
+            return `<img class="gd-project__frame" src="${cleanPath}" alt="${t(p.title)}">`;
+          }).join('')}
         </div>
         <div class="container gd-project__body">
           <span class="gd-project__tags">${t(p.tags)}</span>
